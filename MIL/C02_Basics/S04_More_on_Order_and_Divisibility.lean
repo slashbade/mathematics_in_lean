@@ -39,7 +39,14 @@ example : min a b = min b a := by
     apply min_le_left
 
 example : max a b = max b a := by
-  sorry
+  apply le_antisymm
+  . apply max_le
+    . apply le_max_right
+    apply le_max_left
+  . apply max_le
+    . apply le_max_right
+    apply le_max_left
+
 example : min (min a b) c = min a (min b c) := by
   sorry
 theorem aux : min a b + c ≤ min (a + c) (b + c) := by
@@ -48,8 +55,12 @@ example : min a b + c = min (a + c) (b + c) := by
   sorry
 #check (abs_add : ∀ a b : ℝ, |a + b| ≤ |a| + |b|)
 
-example : |a| - |b| ≤ |a - b| :=
-  sorry
+example : |a| - |b| ≤ |a - b| := by
+  apply (add_le_add_iff_right |b|).mp
+  simp
+  calc
+
+
 end
 
 section
@@ -80,5 +91,3 @@ variable (m n : ℕ)
 example : Nat.gcd m n = Nat.gcd n m := by
   sorry
 end
-
-

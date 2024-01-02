@@ -21,7 +21,7 @@ def FermatLastTheorem :=
 #check FermatLastTheorem
 
 -- These are proofs of propositions.
-theorem easy : 2 + 2 = 4 :=
+theorem easy : 2 + 2 = 4 := by
   rfl
 
 #check easy
@@ -54,4 +54,3 @@ example : ∀ m n : Nat, Even n → Even (m * n) := by
 
 example : ∀ m n : Nat, Even n → Even (m * n) := by
   intros; simp [*, parity_simps]
-

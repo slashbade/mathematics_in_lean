@@ -37,6 +37,7 @@ example : Nat.Prime 3 :=
 #check Nat.Prime.dvd_mul
 #check Nat.Prime.dvd_mul Nat.prime_two
 #check Nat.prime_two.dvd_mul
+#check dvd_mul_right
 
 theorem even_of_even_sqr {m : ℕ} (h : 2 ∣ m ^ 2) : 2 ∣ m := by
   rw [pow_two, Nat.prime_two.dvd_mul] at h
@@ -51,20 +52,28 @@ example (a b c : Nat) (h : a * b = a * c) (h' : a ≠ 0) : b = c :=
 
 example {m n : ℕ} (coprime_mn : m.coprime n) : m ^ 2 ≠ 2 * n ^ 2 := by
   intro sqr_eq
-  have : 2 ∣ m := by
-    sorry
-  obtain ⟨k, meq⟩ := dvd_iff_exists_eq_mul_left.mp this
+  have m_even : 2 ∣ m := by
+    apply even_of_even_sqr
+    rw [sqr_eq]
+    apply dvd_mul_right
+
+  obtain ⟨k, meq⟩ := dvd_iff_exists_eq_mul_left.mp m_even
   have : 2 * (2 * k ^ 2) = 2 * n ^ 2 := by
     rw [← sqr_eq, meq]
     ring
-  have : 2 * k ^ 2 = n ^ 2 :=
-    sorry
+  have : 2 * k ^ 2 = n ^ 2 := by
+    have two_ne_zero : 2 ≠ 0 := by norm_num
+    apply (mul_right_inj' two_ne_zero).mp this
   have : 2 ∣ n := by
-    sorry
+    apply even_of_even_sqr
+    rw [←this]
+    apply dvd_mul_right
   have : 2 ∣ m.gcd n := by
-    sorry
+    apply dvd_gcd
+    . exact m_even
+    . exact this
   have : 2 ∣ 1 := by
-    sorry
+    have h := Nat.coprime.dvd_of_dvd_mul_right coprime_mn this
   norm_num at this
 
 example {m n p : ℕ} (coprime_mn : m.coprime n) (prime_p : p.Prime) : m ^ 2 ≠ p * n ^ 2 := by
@@ -91,6 +100,10 @@ theorem Nat.Prime.factorization' {p : ℕ} (prime_p : p.Prime) :
 
 example {m n p : ℕ} (nnz : n ≠ 0) (prime_p : p.Prime) : m ^ 2 ≠ p * n ^ 2 := by
   intro sqr_eq
+  /-
+  @[reducible] def Nat.coprime : ℕ → ℕ → Prop :=
+  fun m n => Nat.gcd m n = 1
+  -/
   have nsqr_nez : n ^ 2 ≠ 0 := by simpa
   have eq1 : Nat.factorization (m ^ 2) p = 2 * m.factorization p := by
     sorry
@@ -117,4 +130,3 @@ example {m n k r : ℕ} (nnz : n ≠ 0) (pow_eq : m ^ k = r * n ^ k) {p : ℕ} (
   sorry
 
 #check multiplicity
-

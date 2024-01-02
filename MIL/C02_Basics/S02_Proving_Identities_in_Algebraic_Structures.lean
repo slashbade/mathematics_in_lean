@@ -45,6 +45,8 @@ theorem add_right_neg (a : R) : a + -a = 0 := by rw [add_comm, add_left_neg]
 
 end MyRing
 
+#check add_zero
+
 namespace MyRing
 variable {R : Type _} [Ring R]
 
@@ -53,18 +55,23 @@ theorem neg_add_cancel_left (a b : R) : -a + (a + b) = b := by
 
 -- Prove these:
 theorem add_neg_cancel_right (a b : R) : a + b + -b = a := by
-  sorry
+  rw [add_assoc, add_right_neg, add_zero]
 
 theorem add_left_cancel {a b c : R} (h : a + b = a + c) : b = c := by
-  sorry
+  calc
+    b = -a + (a + b) := by rw [neg_add_cancel_left]
+    _ = -a + (a + c) := by rw [h]
+    _ = c := by rw[neg_add_cancel_left]
 
 theorem add_right_cancel {a b c : R} (h : a + b = c + b) : a = c := by
-  sorry
+  rw [add_comm a b, add_comm c b] at h
+  apply add_left_cancel h
 
 theorem mul_zero (a : R) : a * 0 = 0 := by
   have h : a * 0 + a * 0 = a * 0 + 0 := by
     rw [← mul_add, add_zero, add_zero]
   rw [add_left_cancel h]
+
 
 theorem zero_mul (a : R) : 0 * a = 0 := by
   sorry
@@ -99,6 +106,7 @@ example (a b : ℝ) : a - b = a + -b :=
 example (a b : ℝ) : a - b = a + -b := by
   rfl
 
+
 namespace MyRing
 variable {R : Type _} [Ring R]
 
@@ -132,7 +140,19 @@ variable {G : Type _} [Group G]
 namespace MyGroup
 
 theorem mul_right_inv (a : G) : a * a⁻¹ = 1 := by
-  sorry
+  have h : (a * a⁻¹)⁻¹ * (a * a⁻¹ * (a * a⁻¹)) = 1 := by
+    rw [mul_assoc, ← mul_assoc a⁻¹ a, mul_left_inv, one_mul, mul_left_inv]
+  rw [← h, ← mul_assoc, mul_left_inv, one_mul]
+
+theorem mul_right_inv1 (a : G) : a * a⁻¹ = 1 := by
+  rw [←one_mul (a * a⁻¹)]
+  rw [←mul_left_inv (a * a⁻¹)]
+  rw [mul_assoc]
+  rw [mul_assoc a (a⁻¹) (a * a⁻¹)]
+  rw [←mul_assoc a⁻¹ a a⁻¹]
+  rw [mul_left_inv, one_mul]
+
+
 
 theorem mul_one (a : G) : a * 1 = a := by
   sorry
@@ -143,4 +163,3 @@ theorem mul_inv_rev (a b : G) : (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
 end MyGroup
 
 end
-

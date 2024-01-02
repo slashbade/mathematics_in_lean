@@ -5,12 +5,17 @@ example (a b c : ℝ) : a * b * c = b * (a * c) := by
   rw [mul_comm a b]
   rw [mul_assoc b a c]
 
+
 -- Try these.
 example (a b c : ℝ) : c * b * a = b * (a * c) := by
-  sorry
+  rw [mul_comm c b]
+  rw [mul_assoc b c a]
+  rw [mul_comm c a]
 
 example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
-  sorry
+  rw [mul_comm a (b * c)]
+  rw [mul_assoc]
+  rw [mul_comm c]
 
 -- An example.
 example (a b c : ℝ) : a * b * c = b * c * a := by
@@ -20,9 +25,11 @@ example (a b c : ℝ) : a * b * c = b * c * a := by
 /- Try doing the first of these without providing any arguments at all,
    and the second with only one argument. -/
 example (a b c : ℝ) : a * (b * c) = b * (c * a) := by
-  sorry
+  rw [mul_comm]
+  rw [mul_assoc]
 
 example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
+  rw [mul_comm]
   sorry
 
 -- Using facts from the local context.
@@ -75,20 +82,20 @@ example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b := by
 example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
   calc
     (a + b) * (a + b) = a * a + b * a + (a * b + b * b) := by
-      rw [mul_add, add_mul, add_mul]
+      linarith
     _ = a * a + (b * a + a * b) + b * b := by
-      rw [← add_assoc, add_assoc (a * a)]
+      linarith
     _ = a * a + 2 * (a * b) + b * b := by
       rw [mul_comm b a, ← two_mul]
 
 example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
   calc
     (a + b) * (a + b) = a * a + b * a + (a * b + b * b) := by
-      sorry
+      rw [mul_add, add_mul, add_mul]
     _ = a * a + (b * a + a * b) + b * b := by
-      sorry
+      rw [←add_assoc, add_assoc (a * a)]
     _ = a * a + 2 * (a * b) + b * b := by
-      sorry
+      rw [mul_comm b a, ← two_mul]
 
 end
 
