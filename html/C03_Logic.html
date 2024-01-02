@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. Logic &mdash; Mathematics in Lean 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +15,6 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -57,9 +55,10 @@
 <li class="toctree-l1"><a class="reference internal" href="C05_Elementary_Number_Theory.html">5. Elementary Number Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C06_Structures.html">6. Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. Hierarchies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C08_Topology.html">8. Topology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C09_Differential_Calculus.html">9. Differential Calculus</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C10_Integration_and_Measure_Theory.html">10. Integration and Measure Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. Groups and Rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C09_Topology.html">9. Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C10_Differential_Calculus.html">10. Differential Calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C11_Integration_and_Measure_Theory.html">11. Integration and Measure Theory</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -89,8 +88,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="logic">
-<span id="id1"></span><h1><span class="section-number">3. </span>Logic<a class="headerlink" href="#logic" title="Permalink to this heading">&#61633;</a></h1>
+  <div class="section" id="logic">
+<span id="id1"></span><h1><span class="section-number">3. </span>Logic<a class="headerlink" href="#logic" title="Permalink to this headline">&#61633;</a></h1>
 <p>In the last chapter, we dealt with equations, inequalities,
 and basic mathematical statements like
 &#8220;<span class="math notranslate nohighlight">\(x\)</span> divides <span class="math notranslate nohighlight">\(y\)</span>.&#8221;
@@ -100,8 +99,8 @@ using logical terms like &#8220;and,&#8221; &#8220;or,&#8221; &#8220;not,&#8221;
 &#8220;if &#8230; then,&#8221; &#8220;every,&#8221; and &#8220;some.&#8221;
 In this chapter, we show you how to work with statements
 that are built up in this way.</p>
-<section id="implication-and-the-universal-quantifier">
-<span id="id2"></span><h2><span class="section-number">3.1. </span>Implication and the Universal Quantifier<a class="headerlink" href="#implication-and-the-universal-quantifier" title="Permalink to this heading">&#61633;</a></h2>
+<div class="section" id="implication-and-the-universal-quantifier">
+<span id="id2"></span><h2><span class="section-number">3.1. </span>Implication and the Universal Quantifier<a class="headerlink" href="#implication-and-the-universal-quantifier" title="Permalink to this headline">&#61633;</a></h2>
 <p>Consider the statement after the <code class="docutils literal notranslate"><span class="pre">#check</span></code>:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span> <span class="bp">&#8704;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">,</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">x</span> <span class="bp">&#8594;</span> <span class="bp">|</span><span class="n">x</span><span class="bp">|</span> <span class="bp">=</span> <span class="n">x</span>
 </pre></div>
@@ -263,7 +262,7 @@ Try carrying out similar proofs of these:</p>
 <span class="kd">example</span> <span class="o">(</span><span class="n">nnf</span> <span class="o">:</span> <span class="n">FnLb</span> <span class="n">f</span> <span class="mi">0</span><span class="o">)</span> <span class="o">(</span><span class="n">nng</span> <span class="o">:</span> <span class="n">FnLb</span> <span class="n">g</span> <span class="mi">0</span><span class="o">)</span> <span class="o">:</span> <span class="n">FnLb</span> <span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="bp">&#8614;</span> <span class="n">f</span> <span class="n">x</span> <span class="bp">*</span> <span class="n">g</span> <span class="n">x</span><span class="o">)</span> <span class="mi">0</span> <span class="o">:=</span>
   <span class="gr">sorry</span>
 
-<span class="kd">example</span> <span class="o">(</span><span class="n">hfa</span> <span class="o">:</span> <span class="n">FnUb</span> <span class="n">f</span> <span class="n">a</span><span class="o">)</span> <span class="o">(</span><span class="n">hfb</span> <span class="o">:</span> <span class="n">FnUb</span> <span class="n">g</span> <span class="n">b</span><span class="o">)</span> <span class="o">(</span><span class="n">nng</span> <span class="o">:</span> <span class="n">FnLb</span> <span class="n">g</span> <span class="mi">0</span><span class="o">)</span> <span class="o">(</span><span class="n">nna</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">hfa</span> <span class="o">:</span> <span class="n">FnUb</span> <span class="n">f</span> <span class="n">a</span><span class="o">)</span> <span class="o">(</span><span class="n">hgb</span> <span class="o">:</span> <span class="n">FnUb</span> <span class="n">g</span> <span class="n">b</span><span class="o">)</span> <span class="o">(</span><span class="n">nng</span> <span class="o">:</span> <span class="n">FnLb</span> <span class="n">g</span> <span class="mi">0</span><span class="o">)</span> <span class="o">(</span><span class="n">nna</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span>
     <span class="n">FnUb</span> <span class="o">(</span><span class="k">fun</span> <span class="n">x</span> <span class="bp">&#8614;</span> <span class="n">f</span> <span class="n">x</span> <span class="bp">*</span> <span class="n">g</span> <span class="n">x</span><span class="o">)</span> <span class="o">(</span><span class="n">a</span> <span class="bp">*</span> <span class="n">b</span><span class="o">)</span> <span class="o">:=</span>
   <span class="gr">sorry</span>
 </pre></div>
@@ -281,7 +280,7 @@ but it is worth knowing that the natural numbers, integers, rationals,
 and real numbers are all instances.
 So if we prove the theorem <code class="docutils literal notranslate"><span class="pre">fnUb_add</span></code> at that level of generality,
 it will apply in all these instances.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">OrderedCancelAddCommMonoid</span> <span class="n">R</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">OrderedCancelAddCommMonoid</span> <span class="n">R</span><span class="o">]</span>
 
 <span class="k">#check</span> <span class="n">add_le_add</span>
 
@@ -297,10 +296,10 @@ Section <a class="reference internal" href="C02_Basics.html#proving-identities-i
 though we still haven&#8217;t explained what they mean.
 For concreteness, we will stick to the real numbers
 for most of our examples,
-but it is worth knowing that mathlib contains definitions and theorems
+but it is worth knowing that Mathlib contains definitions and theorems
 that work at a high level of generality.</p>
 <p id="index-3">For another example of a hidden universal quantifier,
-mathlib defines a predicate <code class="docutils literal notranslate"><span class="pre">Monotone</span></code>,
+Mathlib defines a predicate <code class="docutils literal notranslate"><span class="pre">Monotone</span></code>,
 which says that a function is nondecreasing in its arguments:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">(</span><span class="n">f</span> <span class="o">:</span> <span class="n">&#8477;</span> <span class="bp">&#8594;</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">Monotone</span> <span class="n">f</span><span class="o">)</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="o">{</span><span class="n">a</span> <span class="n">b</span><span class="o">},</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="n">f</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">f</span> <span class="n">b</span> <span class="o">:=</span>
   <span class="bp">@</span><span class="n">h</span>
@@ -429,7 +428,7 @@ we can write <code class="docutils literal notranslate"><span class="pre">h</spa
 The following example provides a tactic proof and a proof term
 justifying the reflexivity of the subset relation,
 and asks you to do the same for transitivity.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">(</span><span class="n">r</span> <span class="n">s</span> <span class="n">t</span> <span class="o">:</span> <span class="n">Set</span> <span class="n">&#945;</span><span class="o">)</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">(</span><span class="n">r</span> <span class="n">s</span> <span class="n">t</span> <span class="o">:</span> <span class="n">Set</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">:</span> <span class="n">s</span> <span class="bp">&#8838;</span> <span class="n">s</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="n">intro</span> <span class="n">x</span> <span class="n">xs</span>
@@ -449,7 +448,7 @@ has an order associated with it.
 In the next example, we ask you to prove that
 if <code class="docutils literal notranslate"><span class="pre">a</span></code> is a bound on <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&#8804;</span> <span class="pre">b</span></code>,
 then <code class="docutils literal notranslate"><span class="pre">b</span></code> is a bound on <code class="docutils literal notranslate"><span class="pre">s</span></code> as well.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">PartialOrder</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">PartialOrder</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">Set</span> <span class="n">&#945;</span><span class="o">)</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="kd">def</span> <span class="n">SetUb</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">Set</span> <span class="n">&#945;</span><span class="o">)</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span> <span class="o">:=</span>
@@ -482,16 +481,16 @@ a lemma name.</p>
 </pre></div>
 </div>
 <p>Finally, show that the composition of two injective functions is injective:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">{</span><span class="n">&#946;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">{</span><span class="n">&#947;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">{</span><span class="n">&#946;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">{</span><span class="n">&#947;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span>
 <span class="kd">variable</span> <span class="o">{</span><span class="n">g</span> <span class="o">:</span> <span class="n">&#946;</span> <span class="bp">&#8594;</span> <span class="n">&#947;</span><span class="o">}</span> <span class="o">{</span><span class="n">f</span> <span class="o">:</span> <span class="n">&#945;</span> <span class="bp">&#8594;</span> <span class="n">&#946;</span><span class="o">}</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">injg</span> <span class="o">:</span> <span class="n">Injective</span> <span class="n">g</span><span class="o">)</span> <span class="o">(</span><span class="n">injf</span> <span class="o">:</span> <span class="n">Injective</span> <span class="n">f</span><span class="o">)</span> <span class="o">:</span> <span class="n">Injective</span> <span class="k">fun</span> <span class="n">x</span> <span class="bp">&#8614;</span> <span class="n">g</span> <span class="o">(</span><span class="n">f</span> <span class="n">x</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-</section>
-<section id="the-existential-quantifier">
-<span id="id3"></span><h2><span class="section-number">3.2. </span>The Existential Quantifier<a class="headerlink" href="#the-existential-quantifier" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="the-existential-quantifier">
+<span id="id3"></span><h2><span class="section-number">3.2. </span>The Existential Quantifier<a class="headerlink" href="#the-existential-quantifier" title="Permalink to this headline">&#61633;</a></h2>
 <p>The existential quantifier, which can be entered as <code class="docutils literal notranslate"><span class="pre">\ex</span></code> in VS Code,
 is used to represent the phrase &#8220;there exists.&#8221;
 The formal expression <code class="docutils literal notranslate"><span class="pre">&#8707;</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">&#8477;,</span> <span class="pre">2</span> <span class="pre">&lt;</span> <span class="pre">x</span> <span class="pre">&#8743;</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">3</span></code> in Lean says
@@ -512,14 +511,28 @@ leaving the goal of proving the property.</p>
   <span class="n">norm_num</span>
 </pre></div>
 </div>
+<p>You can give the <code class="docutils literal notranslate"><span class="pre">use</span></code> tactic proofs as well as data:</p>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">:</span> <span class="bp">&#8707;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">,</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="n">x</span> <span class="bp">&#8743;</span> <span class="n">x</span> <span class="bp">&lt;</span> <span class="mi">3</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="k">have</span> <span class="n">h1</span> <span class="o">:</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="o">(</span><span class="mi">5</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">norm_num</span>
+  <span class="k">have</span> <span class="n">h2</span> <span class="o">:</span> <span class="o">(</span><span class="mi">5</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="mi">3</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">norm_num</span>
+  <span class="n">use</span> <span class="mi">5</span> <span class="bp">/</span> <span class="mi">2</span><span class="o">,</span> <span class="n">h1</span><span class="o">,</span> <span class="n">h2</span>
+</pre></div>
+</div>
+<p>In fact, the <code class="docutils literal notranslate"><span class="pre">use</span></code> tactic automatically tries to use available assumptions as well.</p>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">:</span> <span class="bp">&#8707;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">,</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="n">x</span> <span class="bp">&#8743;</span> <span class="n">x</span> <span class="bp">&lt;</span> <span class="mi">3</span> <span class="o">:=</span> <span class="kd">by</span>
+  <span class="k">have</span> <span class="n">h</span> <span class="o">:</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="o">(</span><span class="mi">5</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="bp">&#8743;</span> <span class="o">(</span><span class="mi">5</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="mi">3</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">norm_num</span>
+  <span class="n">use</span> <span class="mi">5</span> <span class="bp">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
 <p id="index-7">Alternatively, we can use Lean&#8217;s <em>anonymous constructor</em> notation
-to construct the proof.</p>
+to construct a proof of an existential quantifier.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">:</span> <span class="bp">&#8707;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">,</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="n">x</span> <span class="bp">&#8743;</span> <span class="n">x</span> <span class="bp">&lt;</span> <span class="mi">3</span> <span class="o">:=</span>
   <span class="k">have</span> <span class="n">h</span> <span class="o">:</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="o">(</span><span class="mi">5</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="bp">&#8743;</span> <span class="o">(</span><span class="mi">5</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="bp">&lt;</span> <span class="mi">3</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">norm_num</span>
   <span class="o">&#10216;</span><span class="mi">5</span> <span class="bp">/</span> <span class="mi">2</span><span class="o">,</span> <span class="n">h</span><span class="o">&#10217;</span>
 </pre></div>
 </div>
-<p>The left and right angle brackets,
+<p>Notice that there is no <code class="docutils literal notranslate"><span class="pre">by</span></code>; here we are giving an explicit proof term.
+The left and right angle brackets,
 which can be entered as <code class="docutils literal notranslate"><span class="pre">\&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">\&gt;</span></code> respectively,
 tell Lean to put together the given data using
 whatever construction is appropriate
@@ -613,7 +626,7 @@ in expressions and proof terms:</p>
 </pre></div>
 </div>
 <p>The task of unpacking information in a hypothesis is
-so important that Lean and mathlib provide a number of
+so important that Lean and Mathlib provide a number of
 ways to do it. For example, the <code class="docutils literal notranslate"><span class="pre">obtain</span></code> tactic provides suggestive syntax:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">(</span><span class="n">ubf</span> <span class="o">:</span> <span class="n">FnHasUb</span> <span class="n">f</span><span class="o">)</span> <span class="o">(</span><span class="n">ubg</span> <span class="o">:</span> <span class="n">FnHasUb</span> <span class="n">g</span><span class="o">)</span> <span class="o">:</span> <span class="n">FnHasUb</span> <span class="k">fun</span> <span class="n">x</span> <span class="bp">&#8614;</span> <span class="n">f</span> <span class="n">x</span> <span class="bp">+</span> <span class="n">g</span> <span class="n">x</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="n">obtain</span> <span class="o">&#10216;</span><span class="n">a</span><span class="o">,</span> <span class="n">ubfa</span><span class="o">&#10217;</span> <span class="o">:=</span> <span class="n">ubf</span>
@@ -680,7 +693,7 @@ quantifiers at once.
 We then provide the magic values needed to express <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span></code>
 as a sum of squares as a list to the <code class="docutils literal notranslate"><span class="pre">use</span></code> statement,
 and we use <code class="docutils literal notranslate"><span class="pre">ring</span></code> to verify that they work.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">CommRing</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">CommRing</span> <span class="n">&#945;</span><span class="o">]</span>
 
 <span class="kd">def</span> <span class="n">SumOfSquares</span> <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span> <span class="o">:=</span>
   <span class="bp">&#8707;</span> <span class="n">a</span> <span class="n">b</span><span class="o">,</span> <span class="n">x</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">^</span> <span class="mi">2</span>
@@ -789,16 +802,16 @@ not just a hypothesis.</p>
 </div>
 <p>See if you can use these methods to show that
 the composition of surjective functions is surjective.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">{</span><span class="n">&#946;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">{</span><span class="n">&#947;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">{</span><span class="n">&#946;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">{</span><span class="n">&#947;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span>
 <span class="kd">variable</span> <span class="o">{</span><span class="n">g</span> <span class="o">:</span> <span class="n">&#946;</span> <span class="bp">&#8594;</span> <span class="n">&#947;</span><span class="o">}</span> <span class="o">{</span><span class="n">f</span> <span class="o">:</span> <span class="n">&#945;</span> <span class="bp">&#8594;</span> <span class="n">&#946;</span><span class="o">}</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">surjg</span> <span class="o">:</span> <span class="n">Surjective</span> <span class="n">g</span><span class="o">)</span> <span class="o">(</span><span class="n">surjf</span> <span class="o">:</span> <span class="n">Surjective</span> <span class="n">f</span><span class="o">)</span> <span class="o">:</span> <span class="n">Surjective</span> <span class="k">fun</span> <span class="n">x</span> <span class="bp">&#8614;</span> <span class="n">g</span> <span class="o">(</span><span class="n">f</span> <span class="n">x</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-</section>
-<section id="negation">
-<span id="id4"></span><h2><span class="section-number">3.3. </span>Negation<a class="headerlink" href="#negation" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="negation">
+<span id="id4"></span><h2><span class="section-number">3.3. </span>Negation<a class="headerlink" href="#negation" title="Permalink to this headline">&#61633;</a></h2>
 <p>The symbol <code class="docutils literal notranslate"><span class="pre">&#172;</span></code> is meant to express negation,
 so <code class="docutils literal notranslate"><span class="pre">&#172;</span> <span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span></code> says that <code class="docutils literal notranslate"><span class="pre">x</span></code> is not less than <code class="docutils literal notranslate"><span class="pre">y</span></code>,
 <code class="docutils literal notranslate"><span class="pre">&#172;</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">y</span></code> (or, equivalently, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8800;</span> <span class="pre">y</span></code>) says that
@@ -912,7 +925,7 @@ is equivalent to saying that something fails to have property <code class="docut
 In other words, all four of the following implications
 are valid (but one of them cannot be proved with what we explained so
 far):</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">(</span><span class="n">P</span> <span class="o">:</span> <span class="n">&#945;</span> <span class="bp">&#8594;</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">(</span><span class="n">Q</span> <span class="o">:</span> <span class="kt">Prop</span><span class="o">)</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">(</span><span class="n">P</span> <span class="o">:</span> <span class="n">&#945;</span> <span class="bp">&#8594;</span> <span class="kt">Prop</span><span class="o">)</span> <span class="o">(</span><span class="n">Q</span> <span class="o">:</span> <span class="kt">Prop</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="bp">&#172;&#8707;</span> <span class="n">x</span><span class="o">,</span> <span class="n">P</span> <span class="n">x</span><span class="o">)</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">x</span><span class="o">,</span> <span class="bp">&#172;</span><span class="n">P</span> <span class="n">x</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
@@ -974,7 +987,7 @@ a negation in front,
 and it is a common mathematical pattern to replace such
 statements with equivalent forms in which the negation
 has been pushed inward.
-To facilitate this, mathlib offers a <code class="docutils literal notranslate"><span class="pre">push_neg</span></code> tactic,
+To facilitate this, Mathlib offers a <code class="docutils literal notranslate"><span class="pre">push_neg</span></code> tactic,
 which restates the goal in this way.
 The command <code class="docutils literal notranslate"><span class="pre">push_neg</span> <span class="pre">at</span> <span class="pre">h</span></code> restates the hypothesis <code class="docutils literal notranslate"><span class="pre">h</span></code>.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="bp">&#172;&#8704;</span> <span class="n">a</span><span class="o">,</span> <span class="bp">&#8707;</span> <span class="n">x</span><span class="o">,</span> <span class="n">f</span> <span class="n">x</span> <span class="bp">&gt;</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span> <span class="n">FnHasUb</span> <span class="n">f</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1061,9 +1074,9 @@ Finally, the <code class="docutils literal notranslate"><span class="pre">contra
 by finding a contradiction in the hypotheses,
 such as a pair of the form <code class="docutils literal notranslate"><span class="pre">h</span> <span class="pre">:</span> <span class="pre">P</span></code> and <code class="docutils literal notranslate"><span class="pre">h'</span> <span class="pre">:</span> <span class="pre">&#172;</span> <span class="pre">P</span></code>.
 Of course, in this example, <code class="docutils literal notranslate"><span class="pre">linarith</span></code> also works.</p>
-</section>
-<section id="conjunction-and-iff">
-<span id="conjunction-and-biimplication"></span><h2><span class="section-number">3.4. </span>Conjunction and Iff<a class="headerlink" href="#conjunction-and-iff" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="conjunction-and-iff">
+<span id="conjunction-and-biimplication"></span><h2><span class="section-number">3.4. </span>Conjunction and Iff<a class="headerlink" href="#conjunction-and-iff" title="Permalink to this headline">&#61633;</a></h2>
 <p id="index-18">You have already seen that the conjunction symbol, <code class="docutils literal notranslate"><span class="pre">&#8743;</span></code>,
 is used to express &#8220;and.&#8221;
 The <code class="docutils literal notranslate"><span class="pre">constructor</span></code> tactic allows you to prove a statement of
@@ -1116,8 +1129,7 @@ the existential quantifier.</p>
   <span class="k">fun</span> <span class="o">&#10216;</span><span class="n">h&#8320;</span><span class="o">,</span> <span class="n">h&#8321;</span><span class="o">&#10217;</span> <span class="n">h&#39;</span> <span class="bp">&#8614;</span> <span class="n">h&#8321;</span> <span class="o">(</span><span class="n">le_antisymm</span> <span class="n">h&#8320;</span> <span class="n">h&#39;</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>In analogy to the <code class="docutils literal notranslate"><span class="pre">obtain</span></code> tactic, which we used with the existential
-quantifier, there is also a pattern-matching <code class="docutils literal notranslate"><span class="pre">have</span></code>:</p>
+<p>In analogy to the <code class="docutils literal notranslate"><span class="pre">obtain</span></code> tactic, there is also a pattern-matching <code class="docutils literal notranslate"><span class="pre">have</span></code>:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">{</span><span class="n">x</span> <span class="n">y</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">}</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">&#8804;</span> <span class="n">y</span> <span class="bp">&#8743;</span> <span class="n">x</span> <span class="bp">&#8800;</span> <span class="n">y</span><span class="o">)</span> <span class="o">:</span> <span class="bp">&#172;</span><span class="n">y</span> <span class="bp">&#8804;</span> <span class="n">x</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="k">have</span> <span class="o">&#10216;</span><span class="n">h&#8320;</span><span class="o">,</span> <span class="n">h&#8321;</span><span class="o">&#10217;</span> <span class="o">:=</span> <span class="n">h</span>
   <span class="n">contrapose</span><span class="bp">!</span> <span class="n">h&#8321;</span>
@@ -1288,7 +1300,7 @@ Lean axiomatizes the associated strict pre-order by
 <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span> <span class="pre">&#8596;</span> <span class="pre">a</span> <span class="pre">&#8804;</span> <span class="pre">b</span> <span class="pre">&#8743;</span> <span class="pre">&#172;</span> <span class="pre">b</span> <span class="pre">&#8804;</span> <span class="pre">a</span></code>.
 Show that if <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> is a partial order,
 then <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&#8804;</span> <span class="pre">b</span> <span class="pre">&#8743;</span> <span class="pre">a</span> <span class="pre">&#8800;</span> <span class="pre">b</span></code>:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">PartialOrder</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">PartialOrder</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&lt;</span> <span class="n">b</span> <span class="bp">&#8596;</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8743;</span> <span class="n">a</span> <span class="bp">&#8800;</span> <span class="n">b</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1296,13 +1308,12 @@ then <code class="docutils literal notranslate"><span class="pre">a</span> <span
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-<p id="index-20">Beyond logical operations, you should not need
-anything more than <code class="docutils literal notranslate"><span class="pre">le_refl</span></code> and <code class="docutils literal notranslate"><span class="pre">le_antisymm</span></code>.
-Then show that even in the case where <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code>
+<p id="index-20">Beyond logical operations, you do not need
+anything more than <code class="docutils literal notranslate"><span class="pre">le_refl</span></code> and <code class="docutils literal notranslate"><span class="pre">le_trans</span></code>.
+Show that even in the case where <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code>
 is only assumed to be a preorder,
 we can prove that the strict order is irreflexive
 and transitive.
-You do not need anything more than <code class="docutils literal notranslate"><span class="pre">le_refl</span></code> and <code class="docutils literal notranslate"><span class="pre">le_trans</span></code>.
 In the second example,
 for convenience, we use the simplifier rather than <code class="docutils literal notranslate"><span class="pre">rw</span></code>
 to express <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> in terms of <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#172;</span></code>.
@@ -1310,7 +1321,7 @@ We will come back to the simplifier later,
 but here we are only relying on the fact that it will
 use the indicated lemma repeatedly, even if it needs
 to be instantiated to different values.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">Preorder</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">Preorder</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">:</span> <span class="bp">&#172;</span><span class="n">a</span> <span class="bp">&lt;</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1322,9 +1333,9 @@ to be instantiated to different values.</p>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-</section>
-<section id="disjunction">
-<span id="id5"></span><h2><span class="section-number">3.5. </span>Disjunction<a class="headerlink" href="#disjunction" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="disjunction">
+<span id="id5"></span><h2><span class="section-number">3.5. </span>Disjunction<a class="headerlink" href="#disjunction" title="Permalink to this headline">&#61633;</a></h2>
 <p id="index-21">The canonical way to prove a disjunction <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#8744;</span> <span class="pre">B</span></code> is to prove
 <code class="docutils literal notranslate"><span class="pre">A</span></code> or to prove <code class="docutils literal notranslate"><span class="pre">B</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">left</span></code> tactic chooses <code class="docutils literal notranslate"><span class="pre">A</span></code>,
@@ -1357,7 +1368,7 @@ Here, <code class="docutils literal notranslate"><span class="pre">inl</span></c
 </div>
 <p>It may seem strange to prove a disjunction by proving one side
 or the other.
-In practice, which case holds usually depends a case distinction
+In practice, which case holds usually depends on a case distinction
 that is implicit or explicit in the assumptions and the data.
 The <code class="docutils literal notranslate"><span class="pre">rcases</span></code> tactic allows us to make use of a hypothesis
 of the form <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&#8744;</span> <span class="pre">B</span></code>.
@@ -1440,7 +1451,7 @@ In this textbook, we will generally use <code class="docutils literal notranslat
 cases of a disjunction.</p>
 <p>Try proving the triangle inequality using the two
 first two theorems in the next snippet.
-They are given the same names they have in mathlib.</p>
+They are given the same names they have in Mathlib.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">namespace</span> <span class="n">MyAbs</span>
 
 <span class="kd">theorem</span> <span class="n">le_abs_self</span> <span class="o">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">&#8804;</span> <span class="bp">|</span><span class="n">x</span><span class="bp">|</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1493,7 +1504,7 @@ and use a semicolon and <code class="docutils literal notranslate"><span class="
 </div>
 <p>On the real numbers, an equation <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">0</span></code>
 tells us that <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">0</span></code>.
-In mathlib, this fact is known as <code class="docutils literal notranslate"><span class="pre">eq_zero_or_eq_zero_of_mul_eq_zero</span></code>,
+In Mathlib, this fact is known as <code class="docutils literal notranslate"><span class="pre">eq_zero_or_eq_zero_of_mul_eq_zero</span></code>,
 and it is another nice example of how a disjunction can arise.
 See if you can use it to prove the following:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">{</span><span class="n">x</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">}</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">1</span> <span class="bp">&#8744;</span> <span class="n">x</span> <span class="bp">=</span> <span class="bp">-</span><span class="mi">1</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1518,7 +1529,7 @@ says that the real numbers have no nontrivial zero divisors.
 A commutative ring with this property is called an <em>integral domain</em>.
 Your proofs of the two theorems above should work equally well
 in any integral domain:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">CommRing</span> <span class="n">R</span><span class="o">]</span> <span class="o">[</span><span class="n">IsDomain</span> <span class="n">R</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">CommRing</span> <span class="n">R</span><span class="o">]</span> <span class="o">[</span><span class="n">IsDomain</span> <span class="n">R</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">x</span> <span class="n">y</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">1</span> <span class="bp">&#8744;</span> <span class="n">x</span> <span class="bp">=</span> <span class="bp">-</span><span class="mi">1</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1565,9 +1576,9 @@ using <code class="docutils literal notranslate"><span class="pre">by_cases</spa
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-</section>
-<section id="sequences-and-convergence">
-<span id="id6"></span><h2><span class="section-number">3.6. </span>Sequences and Convergence<a class="headerlink" href="#sequences-and-convergence" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="sequences-and-convergence">
+<span id="id6"></span><h2><span class="section-number">3.6. </span>Sequences and Convergence<a class="headerlink" href="#sequences-and-convergence" title="Permalink to this headline">&#61633;</a></h2>
 <p>We now have enough skills at our disposal to do some real mathematics.
 In Lean, we can represent a sequence <span class="math notranslate nohighlight">\(s_0, s_1, s_2, \ldots\)</span> of
 real numbers as a function <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">:</span> <span class="pre">&#8469;</span> <span class="pre">&#8594;</span> <span class="pre">&#8477;</span></code>.
@@ -1791,19 +1802,19 @@ natural numbers is that their structure carries a partial order
 with <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code>.
 You can check that everything still works if you replace <code class="docutils literal notranslate"><span class="pre">&#8469;</span></code>
 everywhere by any linear order <code class="docutils literal notranslate"><span class="pre">&#945;</span></code>:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">LinearOrder</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">LinearOrder</span> <span class="n">&#945;</span><span class="o">]</span>
 
 <span class="kd">def</span> <span class="n">ConvergesTo&#39;</span> <span class="o">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">&#945;</span> <span class="bp">&#8594;</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">&#8477;</span><span class="o">)</span> <span class="o">:=</span>
   <span class="bp">&#8704;</span> <span class="n">&#949;</span> <span class="bp">&gt;</span> <span class="mi">0</span><span class="o">,</span> <span class="bp">&#8707;</span> <span class="n">N</span><span class="o">,</span> <span class="bp">&#8704;</span> <span class="n">n</span> <span class="bp">&#8805;</span> <span class="n">N</span><span class="o">,</span> <span class="bp">|</span><span class="n">s</span> <span class="n">n</span> <span class="bp">-</span> <span class="n">a</span><span class="bp">|</span> <span class="bp">&lt;</span> <span class="n">&#949;</span>
 </pre></div>
 </div>
-<p>In <a class="reference internal" href="C08_Topology.html#filters"><span class="std std-numref">Section 8.1</span></a>, we will see that mathlib has mechanisms
+<p>In <a class="reference internal" href="C09_Topology.html#filters"><span class="std std-numref">Section 9.1</span></a>, we will see that Mathlib has mechanisms
 for dealing with convergence in vastly more general terms,
 not only abstracting away particular features of the domain
 and codomain,
 but also abstracting over different types of convergence.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

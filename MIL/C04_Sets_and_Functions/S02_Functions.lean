@@ -1,11 +1,11 @@
-import Mathlib.Tactic
+import MIL.Common
 import Mathlib.Data.Set.Lattice
 import Mathlib.Data.Set.Function
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 section
 
-variable {α β : Type _}
+variable {α β : Type*}
 variable (f : α → β)
 variable (s t : Set α)
 variable (u v : Set β)
@@ -69,7 +69,7 @@ example : f ⁻¹' u \ f ⁻¹' v ⊆ f ⁻¹' (u \ v) := by
 example : f '' s ∩ v = f '' (s ∩ f ⁻¹' v) := by
   sorry
 
-example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∪ u := by
+example : f '' (s ∩ f ⁻¹' u) ⊆ f '' s ∩ u := by
   sorry
 
 example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) := by
@@ -78,43 +78,22 @@ example : s ∩ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∩ u) := by
 example : s ∪ f ⁻¹' u ⊆ f ⁻¹' (f '' s ∪ u) := by
   sorry
 
-variable {I : Type _} (A : I → Set α) (B : I → Set β)
+variable {I : Type*} (A : I → Set α) (B : I → Set β)
 
 example : (f '' ⋃ i, A i) = ⋃ i, f '' A i := by
-  ext y; simp
-  constructor
-  · rintro ⟨x, ⟨i, xAi⟩, fxeq⟩
-    use i, x
-    exact ⟨xAi, fxeq⟩
-  rintro ⟨i, x, xAi, fxeq⟩
-  exact ⟨x, ⟨i, xAi⟩, fxeq⟩
+  sorry
 
 example : (f '' ⋂ i, A i) ⊆ ⋂ i, f '' A i := by
-  intro y; simp
-  intro x h fxeq i
-  use x
-  exact ⟨h i, fxeq⟩
+  sorry
 
 example (i : I) (injf : Injective f) : (⋂ i, f '' A i) ⊆ f '' ⋂ i, A i := by
-  intro y; simp
-  intro h
-  rcases h i with ⟨x, xAi, fxeq⟩
-  use x; constructor
-  · intro i'
-    rcases h i' with ⟨x', x'Ai, fx'eq⟩
-    have : f x = f x' := by rw [fxeq, fx'eq]
-    have : x = x' := injf this
-    rw [this]
-    exact x'Ai
-  exact fxeq
+  sorry
 
 example : (f ⁻¹' ⋃ i, B i) = ⋃ i, f ⁻¹' B i := by
-  ext x
-  simp
+  sorry
 
 example : (f ⁻¹' ⋂ i, B i) = ⋂ i, f ⁻¹' B i := by
-  ext x
-  simp
+  sorry
 
 example : InjOn f s ↔ ∀ x₁ ∈ s, ∀ x₂ ∈ s, f x₁ = f x₂ → x₁ = x₂ :=
   Iff.refl _
@@ -158,7 +137,7 @@ example : (range fun x ↦ x ^ 2) = { y : ℝ | y ≥ 0 } := by
 end
 
 section
-variable {α β : Type _} [Inhabited α]
+variable {α β : Type*} [Inhabited α]
 
 #check (default : α)
 
@@ -177,7 +156,7 @@ def inverse (f : α → β) : β → α := fun y : β ↦
   if h : ∃ x, f x = y then Classical.choose h else default
 
 theorem inverse_spec {f : α → β} (y : β) (h : ∃ x, f x = y) : f (inverse f y) = y := by
-  rw [inverse]; dsimp; rw [dif_pos h]
+  rw [inverse, dif_pos h]
   exact Classical.choose_spec h
 
 variable (f : α → β)
@@ -193,7 +172,7 @@ example : Surjective f ↔ RightInverse (inverse f) f :=
 end
 
 section
-variable {α : Type _}
+variable {α : Type*}
 open Function
 
 theorem Cantor : ∀ f : α → Set α, ¬Surjective f := by

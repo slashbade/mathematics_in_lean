@@ -1,5 +1,7 @@
-import Mathlib.Tactic
+import MIL.Common
 import Mathlib.Data.Real.Basic
+
+set_option autoImplicit true
 
 namespace C03S02
 
@@ -31,10 +33,10 @@ example (lbf : FnHasLb f) (lbg : FnHasLb g) : FnHasLb fun x ↦ f x + g x := by
   exact add_le_add (lbfa x) (lbgb x)
 
 example {c : ℝ} (ubf : FnHasUb f) (h : c ≥ 0) : FnHasUb fun x ↦ c * f x := by
-  rcases ubf with ⟨a, lbfa⟩
+  rcases ubf with ⟨a, ubfa⟩
   use c * a
   intro x
-  exact mul_le_mul_of_nonneg_left (lbfa x) h
+  exact mul_le_mul_of_nonneg_left (ubfa x) h
 
 end
 
@@ -71,7 +73,7 @@ end
 
 section
 open Function
-variable {α : Type _} {β : Type _} {γ : Type _}
+variable {α : Type*} {β : Type*} {γ : Type*}
 variable {g : β → γ} {f : α → β}
 
 example (surjg : Surjective g) (surjf : Surjective f) : Surjective fun x ↦ g (f x) := by

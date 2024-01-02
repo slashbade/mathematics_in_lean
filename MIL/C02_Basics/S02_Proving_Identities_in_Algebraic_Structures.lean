@@ -1,9 +1,9 @@
 import Mathlib.Algebra.Ring.Defs
 import Mathlib.Data.Real.Basic
-import Mathlib.Tactic
+import MIL.Common
 
 section
-variable (R : Type _) [Ring R]
+variable (R : Type*) [Ring R]
 
 #check (add_assoc : ∀ a b c : R, a + b + c = a + (b + c))
 #check (add_comm : ∀ a b : R, a + b = b + a)
@@ -18,7 +18,7 @@ variable (R : Type _) [Ring R]
 end
 
 section
-variable (R : Type _) [CommRing R]
+variable (R : Type*) [CommRing R]
 variable (a b c d : R)
 
 example : c * b * a = b * (a * c) := by ring
@@ -34,7 +34,7 @@ example (hyp : c = d * a + b) (hyp' : b = a * d) : c = 2 * a * d := by
 end
 
 namespace MyRing
-variable {R : Type _} [Ring R]
+variable {R : Type*} [Ring R]
 
 theorem add_zero (a : R) : a + 0 = a := by rw [add_comm, zero_add]
 
@@ -48,7 +48,7 @@ end MyRing
 #check add_zero
 
 namespace MyRing
-variable {R : Type _} [Ring R]
+variable {R : Type*} [Ring R]
 
 theorem neg_add_cancel_left (a b : R) : -a + (a + b) = b := by
   rw [← add_assoc, add_left_neg, zero_add]
@@ -93,7 +93,7 @@ end MyRing
 
 -- Examples.
 section
-variable {R : Type _} [Ring R]
+variable {R : Type*} [Ring R]
 
 example (a b : R) : a - b = a + -b :=
   sub_eq_add_neg a b
@@ -108,21 +108,21 @@ example (a b : ℝ) : a - b = a + -b := by
 
 
 namespace MyRing
-variable {R : Type _} [Ring R]
+variable {R : Type*} [Ring R]
 
-theorem self_sub (a : R) : a - a = 0 :=
+theorem self_sub (a : R) : a - a = 0 := by
   sorry
 
 theorem one_add_one_eq_two : 1 + 1 = (2 : R) := by
   norm_num
 
-theorem two_mul (a : R) : 2 * a = a + a :=
+theorem two_mul (a : R) : 2 * a = a + a := by
   sorry
 
 end MyRing
 
 section
-variable (A : Type _) [AddGroup A]
+variable (A : Type*) [AddGroup A]
 
 #check (add_assoc : ∀ a b c : A, a + b + c = a + (b + c))
 #check (zero_add : ∀ a : A, 0 + a = a)
@@ -131,7 +131,7 @@ variable (A : Type _) [AddGroup A]
 end
 
 section
-variable {G : Type _} [Group G]
+variable {G : Type*} [Group G]
 
 #check (mul_assoc : ∀ a b c : G, a * b * c = a * (b * c))
 #check (one_mul : ∀ a : G, 1 * a = a)

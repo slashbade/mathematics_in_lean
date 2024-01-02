@@ -1,6 +1,6 @@
 import Mathlib.Data.Nat.Prime
 import Mathlib.Algebra.BigOperators.Order
-import Mathlib.Tactic
+import MIL.Common
 
 open BigOperators
 
@@ -29,7 +29,6 @@ theorem exists_prime_factor {n : Nat} (h : 2 ≤ n) : ∃ p : Nat, p.Prime ∧ p
   by_cases np : n.Prime
   · use n, np
   induction' n using Nat.strong_induction_on with n ih
-  dsimp at ih
   rw [Nat.prime_def_lt] at np
   push_neg at np
   rcases np h with ⟨m, mltn, mdvdn, mne1⟩
@@ -40,7 +39,6 @@ theorem exists_prime_factor {n : Nat} (h : 2 ≤ n) : ∃ p : Nat, p.Prime ∧ p
   have mgt2 : 2 ≤ m := two_le this mne1
   by_cases mp : m.Prime
   · use m, mp
-    exact mdvdn
   . rcases ih m mltn mgt2 mp with ⟨p, pp, pdvd⟩
     use p, pp
     apply pdvd.trans mdvdn
@@ -63,7 +61,7 @@ theorem primes_infinite : ∀ n, ∃ p > n, Nat.Prime p := by
 open Finset
 
 section
-variable {α : Type _} [DecidableEq α] (r s t : Finset α)
+variable {α : Type*} [DecidableEq α] (r s t : Finset α)
 
 example : r ∩ (s ∪ t) ⊆ r ∩ s ∪ r ∩ t := by
   rw [subset_iff]
@@ -89,7 +87,7 @@ example : r ∩ s ∪ r ∩ t = r ∩ (s ∪ t) := by
 end
 
 section
-variable {α : Type _} [DecidableEq α] (r s t : Finset α)
+variable {α : Type*} [DecidableEq α] (r s t : Finset α)
 
 example : (r ∪ s) ∩ (r ∪ t) = r ∪ s ∩ t := by
   sorry
@@ -166,7 +164,7 @@ theorem mod_4_eq_3_or_mod_4_eq_3 {m n : ℕ} (h : m * n % 4 = 3) : m % 4 = 3 ∨
   have : m % 4 < 4 := Nat.mod_lt m (by norm_num)
   interval_cases hm : m % 4 <;> simp [hm]
   have : n % 4 < 4 := Nat.mod_lt n (by norm_num)
-  interval_cases hn : n % 4 <;> simp [hn]
+  interval_cases hn : n % 4 <;> simp [hn] ; decide
 
 theorem two_le_of_mod_4_eq_3 {n : ℕ} (h : n % 4 = 3) : 2 ≤ n := by
   apply two_le <;>
@@ -180,9 +178,7 @@ theorem exists_prime_factor_mod_4_eq_3 {n : Nat} (h : n % 4 = 3) :
     ∃ p : Nat, p.Prime ∧ p ∣ n ∧ p % 4 = 3 := by
   by_cases np : n.Prime
   · use n
-    exact ⟨np, dvd_rfl, h⟩
   induction' n using Nat.strong_induction_on with n ih
-  dsimp at ih
   rw [Nat.prime_def_lt] at np
   push_neg  at np
   rcases np (two_le_of_mod_4_eq_3 h) with ⟨m, mltn, mdvdn, mne1⟩

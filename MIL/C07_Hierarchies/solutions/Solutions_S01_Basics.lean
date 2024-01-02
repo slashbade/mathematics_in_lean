@@ -1,6 +1,8 @@
-import Mathlib.Tactic.LibrarySearch
+import MIL.Common
 import Mathlib.Algebra.BigOperators.Ring
 import Mathlib.Data.Real.Basic
+
+set_option autoImplicit true
 
 
 class One₁ (α : Type) where
@@ -94,7 +96,7 @@ class Inv₁ (α : Type) where
 @[inherit_doc]
 postfix:max "⁻¹" => Inv₁.inv
 
-class Group₁ (G : Type) extends Monoid₁ G, Inv G where
+class Group₁ (G : Type) extends Monoid₁ G, Inv₁ G where
   inv_dia : ∀ a : G, a⁻¹ ⋄ a = 𝟙
 
 
@@ -291,7 +293,7 @@ def nsmul₁ [Zero M] [Add M] : ℕ → M → M
   | 0, _ => 0
   | n + 1, a => a + nsmul₁ n a
 
-def zsmul₁ {M : Type _} [Zero M] [Add M] [Neg M] : ℤ → M → M
+def zsmul₁ {M : Type*} [Zero M] [Add M] [Neg M] : ℤ → M → M
   | Int.ofNat n, a => nsmul₁ n a
   | Int.negSucc n, a => -nsmul₁ n.succ a
 

@@ -1,5 +1,5 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Tactic
+import MIL.Common
 
 variable (a b c d e : ℝ)
 open Real
@@ -64,7 +64,7 @@ example (h : 1 ≤ a) (h' : b ≤ c) : 2 + a + exp b ≤ 3 * a + exp c := by
 
 #check (exp_le_exp : exp a ≤ exp b ↔ a ≤ b)
 #check (exp_lt_exp : exp a < exp b ↔ a < b)
-#check (log_le_log : 0 < a → 0 < b → (log a ≤ log b ↔ a ≤ b))
+#check (log_le_log : 0 < a → a ≤ b → log a ≤ log b)
 #check (log_lt_log : 0 < a → a < b → log a < log b)
 #check (add_le_add : a ≤ b → c ≤ d → a + c ≤ b + d)
 #check (add_le_add_left : a ≤ b → ∀ c, c + a ≤ c + b)
@@ -129,10 +129,8 @@ example : 2 * a * b ≤ a ^ 2 + b ^ 2 := by
 
   calc
     2 * a * b = 2 * a * b + 0 := by ring
-    _ ≤ 2 * a * b + (a ^ 2 - 2 * a * b + b ^ 2) :=
-      add_le_add (le_refl _) h
+    _ ≤ 2 * a * b + (a ^ 2 - 2 * a * b + b ^ 2) := add_le_add (le_refl _) h
     _ = a ^ 2 + b ^ 2 := by ring
-
 
 example : 2 * a * b ≤ a ^ 2 + b ^ 2 := by
   have h : 0 ≤ a ^ 2 - 2 * a * b + b ^ 2

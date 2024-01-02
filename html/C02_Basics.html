@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. Basics &mdash; Mathematics in Lean 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +15,6 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -56,9 +54,10 @@
 <li class="toctree-l1"><a class="reference internal" href="C05_Elementary_Number_Theory.html">5. Elementary Number Theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C06_Structures.html">6. Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C07_Hierarchies.html">7. Hierarchies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C08_Topology.html">8. Topology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C09_Differential_Calculus.html">9. Differential Calculus</a></li>
-<li class="toctree-l1"><a class="reference internal" href="C10_Integration_and_Measure_Theory.html">10. Integration and Measure Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C08_Groups_and_Rings.html">8. Groups and Rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C09_Topology.html">9. Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C10_Differential_Calculus.html">10. Differential Calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C11_Integration_and_Measure_Theory.html">11. Integration and Measure Theory</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -88,14 +87,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="basics">
-<span id="id1"></span><h1><span class="section-number">2. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">&#61633;</a></h1>
+  <div class="section" id="basics">
+<span id="id1"></span><h1><span class="section-number">2. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">&#61633;</a></h1>
 <p>This chapter is designed to introduce you to the nuts and
 bolts of mathematical reasoning in Lean: calculating,
 applying lemmas and theorems,
 and reasoning about generic structures.</p>
-<section id="calculating">
-<h2><span class="section-number">2.1. </span>Calculating<a class="headerlink" href="#calculating" title="Permalink to this heading">&#61633;</a></h2>
+<div class="section" id="calculating">
+<h2><span class="section-number">2.1. </span>Calculating<a class="headerlink" href="#calculating" title="Permalink to this headline">&#61633;</a></h2>
 <p>We generally learn to carry out mathematical calculations
 without thinking of them as proofs.
 But when we justify each step in a calculation,
@@ -122,11 +121,10 @@ notational conventions and leave out parentheses when Lean does as well.</p>
   <span class="n">rw</span> <span class="o">[</span><span class="n">mul_assoc</span> <span class="n">b</span> <span class="n">a</span> <span class="n">c</span><span class="o">]</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">import</span></code> line at the beginning of the example
-imports the theory of the real numbers from <code class="docutils literal notranslate"><span class="pre">mathlib</span></code>.
+<p>The <code class="docutils literal notranslate"><span class="pre">import</span></code> lines at the beginning of the associated examples file
+import the theory of the real numbers from Mathlib, as well as useful automation.
 For the sake of brevity,
-we generally suppress information like this when it
-is repeated from example to example.</p>
+we generally suppress information like this in the textbook.</p>
 <p>You are welcome to make changes to see what happens.
 You can type the <code class="docutils literal notranslate"><span class="pre">&#8477;</span></code> character as <code class="docutils literal notranslate"><span class="pre">\R</span></code> or <code class="docutils literal notranslate"><span class="pre">\real</span></code>
 in VS Code.
@@ -350,7 +348,7 @@ in the assumption <code class="docutils literal notranslate"><span class="pre">h
 </div>
 <p id="index-5">In the last step, the <code class="docutils literal notranslate"><span class="pre">exact</span></code> tactic can use <code class="docutils literal notranslate"><span class="pre">hyp</span></code> to solve the goal
 because at that point <code class="docutils literal notranslate"><span class="pre">hyp</span></code> matches the goal exactly.</p>
-<p id="index-6">We close this section by noting that <code class="docutils literal notranslate"><span class="pre">mathlib</span></code> provides a
+<p id="index-6">We close this section by noting that Mathlib provides a
 useful bit of automation with a <code class="docutils literal notranslate"><span class="pre">ring</span></code> tactic,
 which is designed to prove identities in any commutative ring as long as they follow
 purely from the ring axioms, without using any local assumption.</p>
@@ -385,9 +383,9 @@ occurrence of <code class="docutils literal notranslate"><span class="pre">a</sp
   <span class="n">rw</span> <span class="o">[</span><span class="n">add_mul</span><span class="o">]</span>
 </pre></div>
 </div>
-</section>
-<section id="proving-identities-in-algebraic-structures">
-<span id="id2"></span><h2><span class="section-number">2.2. </span>Proving Identities in Algebraic Structures<a class="headerlink" href="#proving-identities-in-algebraic-structures" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="proving-identities-in-algebraic-structures">
+<span id="id2"></span><h2><span class="section-number">2.2. </span>Proving Identities in Algebraic Structures<a class="headerlink" href="#proving-identities-in-algebraic-structures" title="Permalink to this headline">&#61633;</a></h2>
 <p id="index-7">Mathematically, a ring consists of a collection of objects,
 <span class="math notranslate nohighlight">\(R\)</span>, operations <span class="math notranslate nohighlight">\(+\)</span> <span class="math notranslate nohighlight">\(\times\)</span>, and constants <span class="math notranslate nohighlight">\(0\)</span>
 and <span class="math notranslate nohighlight">\(1\)</span>, and an operation <span class="math notranslate nohighlight">\(x \mapsto -x\)</span> such that:</p>
@@ -399,7 +397,7 @@ and multiplication distributes over addition.</p></li>
 </ul>
 <p>In Lean, the collection of objects is represented as a <em>type</em>, <code class="docutils literal notranslate"><span class="pre">R</span></code>.
 The ring axioms are as follows:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">(</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">)</span> <span class="o">[</span><span class="n">Ring</span> <span class="n">R</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">(</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">Ring</span> <span class="n">R</span><span class="o">]</span>
 
 <span class="k">#check</span> <span class="o">(</span><span class="n">add_assoc</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="o">:</span> <span class="n">R</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">+</span> <span class="n">c</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">+</span> <span class="o">(</span><span class="n">b</span> <span class="bp">+</span> <span class="n">c</span><span class="o">))</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">add_comm</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">R</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">=</span> <span class="n">b</span> <span class="bp">+</span> <span class="n">a</span><span class="o">)</span>
@@ -427,7 +425,7 @@ but also for proving things about abstract structures,
 characterized axiomatically, like rings.
 Moreover, Lean supports <em>generic reasoning</em> about
 both abstract and concrete structures,
-and can be trained to recognized appropriate instances.
+and can be trained to recognize appropriate instances.
 So any theorem about rings can be applied to concrete rings
 like the integers, <code class="docutils literal notranslate"><span class="pre">&#8484;</span></code>, the rational numbers,  <code class="docutils literal notranslate"><span class="pre">&#8474;</span></code>,
 and the complex numbers <code class="docutils literal notranslate"><span class="pre">&#8450;</span></code>.
@@ -446,7 +444,7 @@ form a ring in which commutativity usually fails. If we declare <code class="doc
 <em>commutative</em> ring, in fact, all the theorems
 in the last section continue to hold when we replace
 <code class="docutils literal notranslate"><span class="pre">&#8477;</span></code> by <code class="docutils literal notranslate"><span class="pre">R</span></code>.</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">(</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">)</span> <span class="o">[</span><span class="n">CommRing</span> <span class="n">R</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">(</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">CommRing</span> <span class="n">R</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="n">d</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">:</span> <span class="n">c</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">=</span> <span class="n">b</span> <span class="bp">*</span> <span class="o">(</span><span class="n">a</span> <span class="bp">*</span> <span class="n">c</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">ring</span>
@@ -471,7 +469,7 @@ you have developed in the last section
 and apply them to reasoning axiomatically about rings.
 We will start with the axioms listed above,
 and use them to derive other facts.
-Most of the facts we prove are already in <code class="docutils literal notranslate"><span class="pre">mathlib</span></code>.
+Most of the facts we prove are already in Mathlib.
 We will give the versions we prove the same names
 to help you learn the contents of the library
 as well as the naming conventions.</p>
@@ -487,7 +485,7 @@ theorems in a new namespace called <code class="docutils literal notranslate"><s
 <p>The next example shows that we do not need <code class="docutils literal notranslate"><span class="pre">add_zero</span></code> or <code class="docutils literal notranslate"><span class="pre">add_right_neg</span></code>
 as ring axioms, because they follow from the other axioms.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kn">namespace</span> <span class="n">MyRing</span>
-<span class="kd">variable</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">Ring</span> <span class="n">R</span><span class="o">]</span>
+<span class="kd">variable</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">Ring</span> <span class="n">R</span><span class="o">]</span>
 
 <span class="kd">theorem</span> <span class="n">add_zero</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">+</span> <span class="mi">0</span> <span class="bp">=</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">rw</span> <span class="o">[</span><span class="n">add_comm</span><span class="o">,</span> <span class="n">zero_add</span><span class="o">]</span>
 
@@ -505,8 +503,8 @@ But don&#8217;t cheat!
 In the exercises that follow, take care to use only the
 general facts about rings that we have proved earlier in this section.</p>
 <p>(If you are paying careful attention, you may have noticed that we
-changed the round brackets in <code class="docutils literal notranslate"><span class="pre">(R</span> <span class="pre">:</span> <span class="pre">Type</span> <span class="pre">_)</span></code> for
-curly brackets in <code class="docutils literal notranslate"><span class="pre">{R</span> <span class="pre">:</span> <span class="pre">Type</span> <span class="pre">_}</span></code>.
+changed the round brackets in <code class="docutils literal notranslate"><span class="pre">(R</span> <span class="pre">:</span> <span class="pre">Type*)</span></code> for
+curly brackets in <code class="docutils literal notranslate"><span class="pre">{R</span> <span class="pre">:</span> <span class="pre">Type*}</span></code>.
 This declares <code class="docutils literal notranslate"><span class="pre">R</span></code> to be an <em>implicit argument</em>.
 We will explain what this means in a moment,
 but don&#8217;t worry about it in the meanwhile.)</p>
@@ -638,7 +636,7 @@ but in some contexts, when dealing with the real numbers,
 you can use the two sides of the equation interchangeably.
 For example, you now have enough information to prove the theorem
 <code class="docutils literal notranslate"><span class="pre">self_sub</span></code> from the last section:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">theorem</span> <span class="n">self_sub</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">-</span> <span class="n">a</span> <span class="bp">=</span> <span class="mi">0</span> <span class="o">:=</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">theorem</span> <span class="n">self_sub</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">-</span> <span class="n">a</span> <span class="bp">=</span> <span class="mi">0</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
@@ -653,7 +651,7 @@ the last section:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">theorem</span> <span class="n">one_add_one_eq_two</span> <span class="o">:</span> <span class="mi">1</span> <span class="bp">+</span> <span class="mi">1</span> <span class="bp">=</span> <span class="o">(</span><span class="mi">2</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="n">norm_num</span>
 
-<span class="kd">theorem</span> <span class="n">two_mul</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span> <span class="o">:</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">a</span> <span class="o">:=</span>
+<span class="kd">theorem</span> <span class="n">two_mul</span> <span class="o">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span> <span class="o">:</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
@@ -662,7 +660,7 @@ addition and negation that we established above do not
 need the full strength of the ring axioms, or even
 commutativity of addition. The weaker notion of a <em>group</em>
 can be axiomatized as follows:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">(</span><span class="n">A</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">)</span> <span class="o">[</span><span class="n">AddGroup</span> <span class="n">A</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">(</span><span class="n">A</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">)</span> <span class="o">[</span><span class="n">AddGroup</span> <span class="n">A</span><span class="o">]</span>
 
 <span class="k">#check</span> <span class="o">(</span><span class="n">add_assoc</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="o">:</span> <span class="n">A</span><span class="o">,</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">+</span> <span class="n">c</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">+</span> <span class="o">(</span><span class="n">b</span> <span class="bp">+</span> <span class="n">c</span><span class="o">))</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">zero_add</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">a</span> <span class="o">:</span> <span class="n">A</span><span class="o">,</span> <span class="mi">0</span> <span class="bp">+</span> <span class="n">a</span> <span class="bp">=</span> <span class="n">a</span><span class="o">)</span>
@@ -675,7 +673,7 @@ and multiplicative notation otherwise.
 So Lean defines a multiplicative version as well as the
 additive version (and also their abelian variants,
 <code class="docutils literal notranslate"><span class="pre">AddCommGroup</span></code> and <code class="docutils literal notranslate"><span class="pre">CommGroup</span></code>).</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">G</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">Group</span> <span class="n">G</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">G</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">Group</span> <span class="n">G</span><span class="o">]</span>
 
 <span class="k">#check</span> <span class="o">(</span><span class="n">mul_assoc</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="o">:</span> <span class="n">G</span><span class="o">,</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">*</span> <span class="n">c</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">*</span> <span class="o">(</span><span class="n">b</span> <span class="bp">*</span> <span class="n">c</span><span class="o">))</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">one_mul</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">a</span> <span class="o">:</span> <span class="n">G</span><span class="o">,</span> <span class="mi">1</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">=</span> <span class="n">a</span><span class="o">)</span>
@@ -696,7 +694,7 @@ The proofs we have carried out in this section provide some hints.</p>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-<p id="index-15">Explicitly invoking those lemmas is tedious, so mathlib provides
+<p id="index-15">Explicitly invoking those lemmas is tedious, so Mathlib provides
 tactics similar to <cite>ring</cite> in order to cover most uses: <cite>group</cite>
 is for non-commutative multiplicative groups, <cite>abel</cite> for abelian
 additive groups, and <cite>noncomm_ring</cite> for non-commutative rings.
@@ -705,9 +703,9 @@ It may seem odd that the algebraic structures are called
 <cite>noncomm_ring</cite> and <cite>ring</cite>. This is partly for historical reasons,
 but also for the convenience of using a shorter name for the
 tactic that deals with commutative rings, since it is used more often.</p>
-</section>
-<section id="using-theorems-and-lemmas">
-<span id="id3"></span><h2><span class="section-number">2.3. </span>Using Theorems and Lemmas<a class="headerlink" href="#using-theorems-and-lemmas" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="using-theorems-and-lemmas">
+<span id="id3"></span><h2><span class="section-number">2.3. </span>Using Theorems and Lemmas<a class="headerlink" href="#using-theorems-and-lemmas" title="Permalink to this headline">&#61633;</a></h2>
 <p id="index-16">Rewriting is great for proving equations,
 but what about other sorts of theorems?
 For example, how can we prove an inequality,
@@ -818,7 +816,7 @@ would be parsed as <code class="docutils literal notranslate"><span class="pre">
 inequalities on the real numbers.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span> <span class="o">(</span><span class="n">exp_le_exp</span> <span class="o">:</span> <span class="n">exp</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">exp</span> <span class="n">b</span> <span class="bp">&#8596;</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span><span class="o">)</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">exp_lt_exp</span> <span class="o">:</span> <span class="n">exp</span> <span class="n">a</span> <span class="bp">&lt;</span> <span class="n">exp</span> <span class="n">b</span> <span class="bp">&#8596;</span> <span class="n">a</span> <span class="bp">&lt;</span> <span class="n">b</span><span class="o">)</span>
-<span class="k">#check</span> <span class="o">(</span><span class="n">log_le_log</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">a</span> <span class="bp">&#8594;</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="o">(</span><span class="n">log</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">log</span> <span class="n">b</span> <span class="bp">&#8596;</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span><span class="o">))</span>
+<span class="k">#check</span> <span class="o">(</span><span class="n">log_le_log</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">a</span> <span class="bp">&#8594;</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="n">log</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">log</span> <span class="n">b</span><span class="o">)</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">log_lt_log</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="n">a</span> <span class="bp">&#8594;</span> <span class="n">a</span> <span class="bp">&lt;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="n">log</span> <span class="n">a</span> <span class="bp">&lt;</span> <span class="n">log</span> <span class="n">b</span><span class="o">)</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">add_le_add</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="n">c</span> <span class="bp">&#8804;</span> <span class="n">d</span> <span class="bp">&#8594;</span> <span class="n">a</span> <span class="bp">+</span> <span class="n">c</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">+</span> <span class="n">d</span><span class="o">)</span>
 <span class="k">#check</span> <span class="o">(</span><span class="n">add_le_add_left</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="bp">&#8704;</span> <span class="n">c</span><span class="o">,</span> <span class="n">c</span> <span class="bp">+</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">c</span> <span class="bp">+</span> <span class="n">b</span><span class="o">)</span>
@@ -834,7 +832,7 @@ inequalities on the real numbers.</p>
 <span class="k">#check</span> <span class="n">add_le_add_left</span>
 </pre></div>
 </div>
-<p>Some of the theorems, <code class="docutils literal notranslate"><span class="pre">exp_le_exp</span></code>, <code class="docutils literal notranslate"><span class="pre">exp_lt_exp</span></code>, and <code class="docutils literal notranslate"><span class="pre">log_le_log</span></code>
+<p>Some of the theorems, <code class="docutils literal notranslate"><span class="pre">exp_le_exp</span></code>, <code class="docutils literal notranslate"><span class="pre">exp_lt_exp</span></code>
 use a <em>bi-implication</em>, which represents the
 phrase &#8220;if and only if.&#8221;
 (You can type it in VS Code with <code class="docutils literal notranslate"><span class="pre">\lr</span></code> of <code class="docutils literal notranslate"><span class="pre">\iff</span></code>).
@@ -875,8 +873,7 @@ tactic can be used to solve concrete numeric goals.</p>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span><span class="o">)</span> <span class="o">:</span> <span class="n">log</span> <span class="o">(</span><span class="mi">1</span> <span class="bp">+</span> <span class="n">exp</span> <span class="n">a</span><span class="o">)</span> <span class="bp">&#8804;</span> <span class="n">log</span> <span class="o">(</span><span class="mi">1</span> <span class="bp">+</span> <span class="n">exp</span> <span class="n">b</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="k">have</span> <span class="n">h&#8320;</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="mi">1</span> <span class="bp">+</span> <span class="n">exp</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span> <span class="gr">sorry</span>
-  <span class="k">have</span> <span class="n">h&#8321;</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&lt;</span> <span class="mi">1</span> <span class="bp">+</span> <span class="n">exp</span> <span class="n">b</span> <span class="o">:=</span> <span class="kd">by</span> <span class="gr">sorry</span>
-  <span class="n">apply</span> <span class="o">(</span><span class="n">log_le_log</span> <span class="n">h&#8320;</span> <span class="n">h&#8321;</span><span class="o">)</span><span class="bp">.</span><span class="n">mpr</span>
+  <span class="n">apply</span> <span class="n">log_le_log</span> <span class="n">h&#8320;</span>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
@@ -885,11 +882,11 @@ find the library theorems you need constitutes an important
 part of formalization.
 There are a number of strategies you can use:</p>
 <ul class="simple">
-<li><p>You can browse mathlib in its
+<li><p>You can browse Mathlib in its
 <a class="reference external" href="https://github.com/leanprover-community/mathlib4">GitHub repository</a>.</p></li>
-<li><p>You can use the API documentation on the mathlib
+<li><p>You can use the API documentation on the Mathlib
 <a class="reference external" href="https://leanprover-community.github.io/mathlib4_docs/">web pages</a>.</p></li>
-<li><p>You can rely on mathlib naming conventions and Ctrl-space completion in
+<li><p>You can rely on Mathlib naming conventions and Ctrl-space completion in
 the editor to guess a theorem name (or Cmd-space on a Mac keyboard).
 In Lean, a theorem named <code class="docutils literal notranslate"><span class="pre">A_of_B_of_C</span></code> establishes
 something of the form <code class="docutils literal notranslate"><span class="pre">A</span></code> from hypotheses of the form <code class="docutils literal notranslate"><span class="pre">B</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code>,
@@ -932,8 +929,7 @@ can also finish the job.</p>
 
   <span class="k">calc</span>
     <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">=</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">+</span> <span class="mi">0</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">ring</span>
-    <span class="n">_</span> <span class="bp">&#8804;</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">+</span> <span class="o">(</span><span class="n">a</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">-</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">^</span> <span class="mi">2</span><span class="o">)</span> <span class="o">:=</span>
-      <span class="n">add_le_add</span> <span class="o">(</span><span class="n">le_refl</span> <span class="n">_</span><span class="o">)</span> <span class="n">h</span>
+    <span class="n">_</span> <span class="bp">&#8804;</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">+</span> <span class="o">(</span><span class="n">a</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">-</span> <span class="mi">2</span> <span class="bp">*</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">b</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">^</span> <span class="mi">2</span><span class="o">)</span> <span class="o">:=</span> <span class="n">add_le_add</span> <span class="o">(</span><span class="n">le_refl</span> <span class="n">_</span><span class="o">)</span> <span class="n">h</span>
     <span class="n">_</span> <span class="bp">=</span> <span class="n">a</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">^</span> <span class="mi">2</span> <span class="o">:=</span> <span class="kd">by</span> <span class="n">ring</span>
 </pre></div>
 </div>
@@ -943,7 +939,7 @@ There are a number of things worth noticing.
 First, an expression <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">&#8805;</span> <span class="pre">t</span></code> is definitionally equivalent to <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">&#8804;</span> <span class="pre">s</span></code>.
 In principle, this means one should be able to use them interchangeably.
 But some of Lean&#8217;s automation does not recognize the equivalence,
-so mathlib tends to favor <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> over <code class="docutils literal notranslate"><span class="pre">&#8805;</span></code>.
+so Mathlib tends to favor <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> over <code class="docutils literal notranslate"><span class="pre">&#8805;</span></code>.
 Second, we have used the <code class="docutils literal notranslate"><span class="pre">ring</span></code> tactic extensively.
 It is a real timesaver!
 Finally, notice that in the second line of the
@@ -963,7 +959,9 @@ linear arithmetic, and <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 <p>How nice! We challenge you to use these ideas to prove the
-following theorem. You can use the theorem <code class="docutils literal notranslate"><span class="pre">abs_le'.mpr</span></code>.</p>
+following theorem. You can use the theorem <code class="docutils literal notranslate"><span class="pre">abs_le'.mpr</span></code>.
+You will also need the <code class="docutils literal notranslate"><span class="pre">constructor</span></code> tactic to split a conjunction
+to two goals; see <a class="reference internal" href="C03_Logic.html#conjunction-and-biimplication"><span class="std std-numref">Section 3.4</span></a>.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">:</span> <span class="bp">|</span><span class="n">a</span> <span class="bp">*</span> <span class="n">b</span><span class="bp">|</span> <span class="bp">&#8804;</span> <span class="o">(</span><span class="n">a</span> <span class="bp">^</span> <span class="mi">2</span> <span class="bp">+</span> <span class="n">b</span> <span class="bp">^</span> <span class="mi">2</span><span class="o">)</span> <span class="bp">/</span> <span class="mi">2</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 
@@ -972,9 +970,9 @@ following theorem. You can use the theorem <code class="docutils literal notrans
 </div>
 <p>If you managed to solve this, congratulations!
 You are well on your way to becoming a master formalizer.</p>
-</section>
-<section id="more-examples-using-apply-and-rw">
-<span id="more-on-order-and-divisibility"></span><h2><span class="section-number">2.4. </span>More examples using apply and rw<a class="headerlink" href="#more-examples-using-apply-and-rw" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="more-examples-using-apply-and-rw">
+<span id="more-on-order-and-divisibility"></span><h2><span class="section-number">2.4. </span>More examples using apply and rw<a class="headerlink" href="#more-examples-using-apply-and-rw" title="Permalink to this headline">&#61633;</a></h2>
 <p id="index-21">The <code class="docutils literal notranslate"><span class="pre">min</span></code> function on the real numbers is uniquely characterized
 by the following three facts:</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="k">#check</span> <span class="o">(</span><span class="n">min_le_left</span> <span class="n">a</span> <span class="n">b</span> <span class="o">:</span> <span class="n">min</span> <span class="n">a</span> <span class="n">b</span> <span class="bp">&#8804;</span> <span class="n">a</span><span class="o">)</span>
@@ -1125,7 +1123,7 @@ Be careful: the divisibility symbol is <em>not</em> the
 ordinary bar on your keyboard.
 Rather, it is a unicode character obtained by
 typing <code class="docutils literal notranslate"><span class="pre">\|</span></code> in VS Code.
-By convention, mathlib uses <code class="docutils literal notranslate"><span class="pre">dvd</span></code>
+By convention, Mathlib uses <code class="docutils literal notranslate"><span class="pre">dvd</span></code>
 to refer to it in theorem names.</p>
 <div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">(</span><span class="n">h&#8320;</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">&#8739;</span> <span class="n">y</span><span class="o">)</span> <span class="o">(</span><span class="n">h&#8321;</span> <span class="o">:</span> <span class="n">y</span> <span class="bp">&#8739;</span> <span class="n">z</span><span class="o">)</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">&#8739;</span> <span class="n">z</span> <span class="o">:=</span>
   <span class="n">dvd_trans</span> <span class="n">h&#8320;</span> <span class="n">h&#8321;</span>
@@ -1174,9 +1172,9 @@ theorem and the version <code class="docutils literal notranslate"><span class="
 the one specifically for the natural numbers.
 You can use <code class="docutils literal notranslate"><span class="pre">_root_.dvd_antisymm</span></code> to specify the generic one;
 either one will work.</p>
-</section>
-<section id="proving-facts-about-algebraic-structures">
-<span id="id4"></span><h2><span class="section-number">2.5. </span>Proving Facts about Algebraic Structures<a class="headerlink" href="#proving-facts-about-algebraic-structures" title="Permalink to this heading">&#61633;</a></h2>
+</div>
+<div class="section" id="proving-facts-about-algebraic-structures">
+<span id="id4"></span><h2><span class="section-number">2.5. </span>Proving Facts about Algebraic Structures<a class="headerlink" href="#proving-facts-about-algebraic-structures" title="Permalink to this headline">&#61633;</a></h2>
 <p id="index-27">In <a class="reference internal" href="#proving-identities-in-algebraic-structures"><span class="std std-numref">Section 2.2</span></a>,
 we saw that many common identities governing the real numbers hold
 in more general classes of algebraic structures,
@@ -1187,7 +1185,7 @@ For example, a <em>partial order</em> consists of a set with a
 binary relation that is reflexive and transitive,
 like <code class="docutils literal notranslate"><span class="pre">&#8804;</span></code> on the real numbers.
 Lean knows about partial orders:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">PartialOrder</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">PartialOrder</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="k">#check</span> <span class="n">x</span> <span class="bp">&#8804;</span> <span class="n">y</span>
@@ -1195,7 +1193,7 @@ Lean knows about partial orders:</p>
 <span class="k">#check</span> <span class="o">(</span><span class="n">le_trans</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">&#8804;</span> <span class="n">y</span> <span class="bp">&#8594;</span> <span class="n">y</span> <span class="bp">&#8804;</span> <span class="n">z</span> <span class="bp">&#8594;</span> <span class="n">x</span> <span class="bp">&#8804;</span> <span class="n">z</span><span class="o">)</span>
 </pre></div>
 </div>
-<p>Here we are adopting the mathlib convention of using
+<p>Here we are adopting the Mathlib convention of using
 letters like <code class="docutils literal notranslate"><span class="pre">&#945;</span></code>, <code class="docutils literal notranslate"><span class="pre">&#946;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#947;</span></code>
 (entered as <code class="docutils literal notranslate"><span class="pre">\a</span></code>, <code class="docutils literal notranslate"><span class="pre">\b</span></code>, and <code class="docutils literal notranslate"><span class="pre">\g</span></code>)
 for arbitrary types.
@@ -1230,7 +1228,7 @@ has the properties indicated.</p>
 <p id="index-28">A <em>lattice</em> is a structure that extends a partial
 order with operations <code class="docutils literal notranslate"><span class="pre">&#8851;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#8852;</span></code> that are
 analogous to <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> on the real numbers:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">Lattice</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">Lattice</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="k">#check</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="n">y</span>
@@ -1248,7 +1246,7 @@ the <em>greatest lower bound</em> and <em>least upper bound</em>, respectively.
 You can type them in VS code using <code class="docutils literal notranslate"><span class="pre">\glb</span></code> and <code class="docutils literal notranslate"><span class="pre">\lub</span></code>.
 The symbols are also often called then <em>infimum</em> and
 the <em>supremum</em>,
-and mathlib refers to them as <code class="docutils literal notranslate"><span class="pre">inf</span></code> and <code class="docutils literal notranslate"><span class="pre">sup</span></code> in
+and Mathlib refers to them as <code class="docutils literal notranslate"><span class="pre">inf</span></code> and <code class="docutils literal notranslate"><span class="pre">sup</span></code> in
 theorem names.
 To further complicate matters,
 they are also often called <em>meet</em> and <em>join</em>.
@@ -1291,7 +1289,7 @@ together with <code class="docutils literal notranslate"><span class="pre">le_re
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>You can find these theorems in the mathlib as <code class="docutils literal notranslate"><span class="pre">inf_comm</span></code>, <code class="docutils literal notranslate"><span class="pre">inf_assoc</span></code>,
+<p>You can find these theorems in the Mathlib as <code class="docutils literal notranslate"><span class="pre">inf_comm</span></code>, <code class="docutils literal notranslate"><span class="pre">inf_assoc</span></code>,
 <code class="docutils literal notranslate"><span class="pre">sup_comm</span></code>, and <code class="docutils literal notranslate"><span class="pre">sup_assoc</span></code>, respectively.</p>
 <p>Another good exercise is to prove the <em>absorption laws</em>
 using only those axioms:</p>
@@ -1302,12 +1300,12 @@ using only those axioms:</p>
   <span class="gr">sorry</span>
 </pre></div>
 </div>
-<p>These can be found in mathlib with the names <code class="docutils literal notranslate"><span class="pre">inf_sup_self</span></code> and <code class="docutils literal notranslate"><span class="pre">sup_inf_self</span></code>.</p>
+<p>These can be found in Mathlib with the names <code class="docutils literal notranslate"><span class="pre">inf_sup_self</span></code> and <code class="docutils literal notranslate"><span class="pre">sup_inf_self</span></code>.</p>
 <p>A lattice that satisfies the additional identities
 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8851;</span> <span class="pre">(y</span> <span class="pre">&#8852;</span> <span class="pre">z)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">&#8851;</span> <span class="pre">y)</span> <span class="pre">&#8852;</span> <span class="pre">(x</span> <span class="pre">&#8851;</span> <span class="pre">z)</span></code> and
 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&#8852;</span> <span class="pre">(y</span> <span class="pre">&#8851;</span> <span class="pre">z)</span> <span class="pre">=</span> <span class="pre">(x</span> <span class="pre">&#8852;</span> <span class="pre">y)</span> <span class="pre">&#8851;</span> <span class="pre">(x</span> <span class="pre">&#8852;</span> <span class="pre">z)</span></code>
 is called a <em>distributive lattice</em>. Lean knows about these too:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">DistribLattice</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">DistribLattice</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="k">#check</span> <span class="o">(</span><span class="n">inf_sup_left</span> <span class="o">:</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="o">(</span><span class="n">y</span> <span class="bp">&#8852;</span> <span class="n">z</span><span class="o">)</span> <span class="bp">=</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="n">y</span> <span class="bp">&#8852;</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="n">z</span><span class="o">)</span>
@@ -1324,7 +1322,7 @@ by providing an explicit description of a
 nondistributive lattice with finitely many elements.
 It is also a good exercise to show that in any lattice,
 either distributivity law implies the other:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">Lattice</span> <span class="n">&#945;</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">&#945;</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">Lattice</span> <span class="n">&#945;</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">)</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="bp">&#8704;</span> <span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">:</span> <span class="n">&#945;</span><span class="o">,</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="o">(</span><span class="n">y</span> <span class="bp">&#8852;</span> <span class="n">z</span><span class="o">)</span> <span class="bp">=</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="n">y</span> <span class="bp">&#8852;</span> <span class="n">x</span> <span class="bp">&#8851;</span> <span class="n">z</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8852;</span> <span class="n">b</span> <span class="bp">&#8851;</span> <span class="n">c</span> <span class="bp">=</span> <span class="o">(</span><span class="n">a</span> <span class="bp">&#8852;</span> <span class="n">b</span><span class="o">)</span> <span class="bp">&#8851;</span> <span class="o">(</span><span class="n">a</span> <span class="bp">&#8852;</span> <span class="n">c</span><span class="o">)</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1339,7 +1337,7 @@ For example, a <em>strict ordered ring</em> consists of a commutative ring toget
 with a partial order on the carrier
 satisfying additional axioms that say that the ring operations
 are compatible with the order:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">StrictOrderedRing</span> <span class="n">R</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">R</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">StrictOrderedRing</span> <span class="n">R</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="o">:</span> <span class="n">R</span><span class="o">)</span>
 
 <span class="k">#check</span> <span class="o">(</span><span class="n">add_le_add_left</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="bp">&#8704;</span> <span class="n">c</span><span class="o">,</span> <span class="n">c</span> <span class="bp">+</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">c</span> <span class="bp">+</span> <span class="n">b</span><span class="o">)</span>
@@ -1357,10 +1355,10 @@ numbers hold generically for any ordered ring.
 Here are a couple of examples you can try,
 using only properties of rings, partial orders, and the facts
 enumerated in the last two examples:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">&#8594;</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">-</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span><span class="o">)</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">-</span> <span class="n">a</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 
-<span class="kd">example</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">-</span> <span class="n">a</span> <span class="bp">&#8594;</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="o">:=</span> <span class="kd">by</span>
+<span class="kd">example</span> <span class="o">(</span><span class="n">h</span><span class="o">:</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">-</span> <span class="n">a</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="o">:=</span> <span class="kd">by</span>
   <span class="gr">sorry</span>
 
 <span class="kd">example</span> <span class="o">(</span><span class="n">h</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">&#8804;</span> <span class="n">b</span><span class="o">)</span> <span class="o">(</span><span class="n">h&#39;</span> <span class="o">:</span> <span class="mi">0</span> <span class="bp">&#8804;</span> <span class="n">c</span><span class="o">)</span> <span class="o">:</span> <span class="n">a</span> <span class="bp">*</span> <span class="n">c</span> <span class="bp">&#8804;</span> <span class="n">b</span> <span class="bp">*</span> <span class="n">c</span> <span class="o">:=</span> <span class="kd">by</span>
@@ -1372,7 +1370,7 @@ A <em>metric space</em> consists of a set equipped with a notion of
 distance, <code class="docutils literal notranslate"><span class="pre">dist</span> <span class="pre">x</span> <span class="pre">y</span></code>,
 mapping any pair of elements to a real number.
 The distance function is assumed to satisfy the following axioms:</p>
-<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span> <span class="n">_</span><span class="o">}</span> <span class="o">[</span><span class="n">MetricSpace</span> <span class="n">X</span><span class="o">]</span>
+<div class="highlight-lean notranslate"><div class="highlight"><pre><span></span><span class="kd">variable</span> <span class="o">{</span><span class="n">X</span> <span class="o">:</span> <span class="kt">Type</span><span class="bp">*</span><span class="o">}</span> <span class="o">[</span><span class="n">MetricSpace</span> <span class="n">X</span><span class="o">]</span>
 <span class="kd">variable</span> <span class="o">(</span><span class="n">x</span> <span class="n">y</span> <span class="n">z</span> <span class="o">:</span> <span class="n">X</span><span class="o">)</span>
 
 <span class="k">#check</span> <span class="o">(</span><span class="n">dist_self</span> <span class="n">x</span> <span class="o">:</span> <span class="n">dist</span> <span class="n">x</span> <span class="n">x</span> <span class="bp">=</span> <span class="mi">0</span><span class="o">)</span>
@@ -1388,9 +1386,9 @@ always nonnegative:</p>
 </pre></div>
 </div>
 <p>We recommend making use of the theorem <code class="docutils literal notranslate"><span class="pre">nonneg_of_mul_nonneg_left</span></code>.
-As you may have guessed, this theorem is called <code class="docutils literal notranslate"><span class="pre">dist_nonneg</span></code> in mathlib.</p>
-</section>
-</section>
+As you may have guessed, this theorem is called <code class="docutils literal notranslate"><span class="pre">dist_nonneg</span></code> in Mathlib.</p>
+</div>
+</div>
 
 
            </div>
